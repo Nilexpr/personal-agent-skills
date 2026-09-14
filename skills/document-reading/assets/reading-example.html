@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>查阅后，回到原句 · 阅读交互示例</title>
+<style>
+:root{color-scheme:light dark;--paper:#faf9f6;--ink:#232d35;--accent:#165e75;--line:#a5abb0;--mark:#fff1ac}
+html{scroll-padding-top:7rem}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:18px/1.85 system-ui,sans-serif}
+main,header,nav{max-width:48rem;margin:auto;padding:1.2rem}header{padding-top:3rem}h1{font-size:2rem;line-height:1.35}h2{font-size:1.4rem}h3{font-size:1.1rem}section{margin:3rem 0;scroll-margin-top:1.5rem}p{margin:1rem 0}a{color:var(--accent);text-underline-offset:.2em}button{font:inherit;color:inherit;background:transparent;border:1px solid var(--line);border-radius:.3rem;padding:.15rem .55rem;cursor:pointer}button:disabled{opacity:.5;cursor:default}:focus-visible{outline:3px solid var(--accent);outline-offset:3px}var{font-family:Georgia,serif}code{font-family:ui-monospace,monospace;background:#8882;padding:0 .2em}strong{font-weight:700}dfn{font-style:normal;font-weight:650}.intro,.hint{color:#54616b}.hint{font-size:.88rem}.toolbar{position:sticky;top:0;z-index:2;background:var(--paper);border-bottom:1px solid var(--line)}.toolbar nav{padding:.4rem 1.2rem;display:flex;gap:1rem;align-items:center;flex-wrap:wrap}.variable-toggle{border:0;padding:0 .15rem;text-decoration:underline dotted;text-underline-offset:.2em}.variable-toggle[aria-pressed=true]{background:var(--mark);outline:2px solid currentColor;border-radius:.2rem}.variable-toggle[data-symbol=next][aria-pressed=true]{background:#c6e6da}.scope{border-left:2px solid var(--line);padding-left:1rem}li{margin:.7rem 0}.landing,:target{outline:2px solid var(--accent);outline-offset:5px}.landing{background:var(--mark)}[popover]{max-width:26rem;width:calc(100vw - 2rem);max-height:70vh;overflow:auto;margin:auto 1rem auto auto;padding:1.2rem;border:1px solid var(--accent);border-radius:.5rem;background:var(--paper);color:var(--ink);box-shadow:0 .5rem 2rem #0003}[popover] h2{margin-top:0}[hidden]{display:none!important}.spacer-copy{padding:1rem 0;border-top:1px solid var(--line)}@media(max-width:650px){[popover]{margin:auto auto 1rem;max-height:45vh}h1{font-size:1.7rem}.toolbar nav{gap:.6rem}body{font-size:17px}}
+@media(prefers-color-scheme:dark){:root{--paper:#192125;--ink:#e5e8e9;--accent:#9ad8ec;--line:#77878d;--mark:#514516}.intro,.hint{color:#b5c5cb}.variable-toggle[data-symbol=next][aria-pressed=true]{background:#204d3d}}
+@media print{.toolbar,button,[popover],#status{display:none!important}body{font-size:12pt;background:white;color:black}a{color:black}section{break-inside:auto}.variable-toggle{display:inline!important;border:0;outline:0!important;background:none!important;padding:0}.landing,:target{outline:0;background:none}}
+</style>
+<header><p class="intro">文档阅读 · 可独立打开的示例</p><h1>查阅后，回到原句</h1><p>正文中的链接通向完整定义；启用脚本后，“解释”按钮提供就地查阅，变量的下划线表示可以关联高亮。粗体表示重要约束，代码字形保留字面写法。</p><p class="hint">本页使用一个简化的作用域说明演示交互，不是 ECMAScript 算法的实现。</p></header>
+<div class="toolbar"><nav aria-label="阅读导航"><a href="#walkthrough">阅读过程</a><a href="#other">另一处使用</a><a href="#environment">完整定义</a><button id="return" hidden disabled>返回上一阅读位置</button></nav></div>
+<main>
+<section id="walkthrough" data-section="walkthrough"><h2>1 · 进入与退出一个局部区域</h2>
+<p id="read-start">解释嵌套区域时，首先保留当前的<a id="use-env-1" data-concept="environment" data-relation="uses" data-journey href="#environment">环境</a>，然后为内层操作准备一个新的环境。<strong>离开内层区域后，仍需恢复原来的环境。</strong></p>
+<p>这里的“保留”和“恢复”是同一个对象在不同步骤中的使用。点击 <var>saved</var> 的任一带下划线出现位置，可以检查它与后续恢复步骤的联系。</p>
+<ol id="outer" data-scope="outer">
+<li>用 <var data-symbol="saved">saved</var> 保存当前环境。</li>
+<li>将新建的<a id="use-env-2" data-concept="environment" data-relation="uses" data-journey href="#environment">环境</a>记为 <var data-symbol="next">next</var>，并在 <var data-symbol="next">next</var> 中执行操作。</li>
+<li class="scope"><div id="inner" data-scope="inner">内层还有一个同名的 <var data-symbol="saved">saved</var>；它属于另一项记录，不与外层保存值关联。</div></li>
+<li>完成后取回 <var data-symbol="saved">saved</var>，恢复此前的环境。</li>
+</ol><p id="status" class="hint" role="status" aria-live="polite"></p>
+<div class="spacer-copy"><h3>为什么在正文保留这段说明</h3><p>就地解释只能帮助查阅名词，不能替代“为什么需要保存、什么时候恢复”的推理。即使关闭脚本，读者仍能沿着步骤理解过程，再通过普通链接查看定义。</p><p>本示例的关联由作者标注的作用域和符号共同决定，同样的拼写本身不代表同一个变量。这样的标注也允许后续把同一组引用用于图示或更详细的示例。</p></div>
+</section>
+<section id="other" data-section="other"><h2>2 · 另一处使用</h2><p>分析一次独立操作时，也可能需要保存<a id="use-env-3" data-concept="environment" data-relation="uses" data-journey href="#environment">环境</a>。这是同一个概念在另一章节的引用。</p><p id="separate" data-scope="separate">这里的 <var data-symbol="saved">saved</var> 属于另一项操作，不应随第一节的变量一起选中。</p></section>
+<section id="environment" data-section="definition"><h2>3 · <dfn>环境</dfn></h2><p class="definition-text">在本示例中，环境是查找名称时所使用的一组关联，以及继续向外查找所需的联系。保存环境，是为了稍后恢复查找所依赖的上下文。</p><p><code>environment</code> 是这里使用的英文标识；<em>外层</em>强调查找的方向，不表示所有概念都要斜体显示。</p><div id="backlinks" hidden><h3 id="backlink-title"></h3><div id="backlink-list"></div></div><p class="hint">定义是解释的唯一来源；就地预览取自上面的定义段落。反向引用从正文中的三个显式链接生成。</p></section>
+<footer><p class="hint">示例只采用解释、反向引用、变量关联与返回位置；文档很短，因此没有增加搜索或书签。</p></footer>
+</main>
+<script>
+(() => {
+  history.scrollRestoration = 'manual';
+  const returnButton = document.getElementById('return');
+  const refs = [...document.querySelectorAll('a[data-concept]')];
+  const status = document.getElementById('status');
+  const getScope = node => node.closest('[data-scope]');
+  const variables = [...document.querySelectorAll('var[data-symbol]')];
+  let origin = null;
+  const snapshot = node => ({id:node.id, top:node.getBoundingClientRect().top, y:scrollY});
+  const restore = place => {
+    const node = document.getElementById(place.id);
+    if (!node) return;
+    node.focus({preventScroll:true});
+    scrollTo(0, scrollY + node.getBoundingClientRect().top - place.top);
+  };
+  const updateReturn = () => {returnButton.disabled = !(history.state?.readingDepth > 0);};
+  const panel = document.createElement('aside');
+  if ('popover' in HTMLElement.prototype) {
+    panel.id = 'concept-preview'; panel.popover = 'auto';
+    panel.setAttribute('aria-labelledby','preview-title');
+    panel.innerHTML = '<h2 id="preview-title"></h2><p id="preview-text"></p><p><a id="preview-full" data-journey>查看完整定义</a></p><button type="button" id="preview-close">关闭解释</button>';
+    document.body.append(panel);
+    panel.querySelector('#preview-close').addEventListener('click', () => panel.hidePopover());
+    panel.addEventListener('toggle', event => {
+      if (origin) origin.setAttribute('aria-expanded',String(event.newState === 'open'));
+      if (event.newState === 'closed' && origin && document.activeElement === document.body) origin.focus({preventScroll:true});
+    });
+    refs.forEach(ref => {
+      const control = document.createElement('button');
+      control.id = `explain-${ref.id}`; control.type = 'button';
+      control.textContent = `解释${ref.textContent}`;
+      control.setAttribute('aria-controls',panel.id); control.setAttribute('aria-expanded','false');
+      control.addEventListener('click', () => {
+        if (panel.matches(':popover-open')) panel.hidePopover();
+        origin = control;
+        const definition = document.getElementById(ref.dataset.concept);
+        panel.querySelector('#preview-title').textContent = `解释：${ref.textContent}`;
+        panel.querySelector('#preview-text').textContent = definition.querySelector('.definition-text').textContent;
+        panel.querySelector('#preview-full').href = ref.href;
+        panel.showPopover({source:control});
+        panel.querySelector('#preview-close').focus({preventScroll:true});
+      });
+      ref.after(document.createTextNode(' '),control);
+    });
+  }
+  variables.forEach((variable,index) => {
+    const control = document.createElement('button');
+    control.id = `variable-${index}`; control.type = 'button'; control.className = 'variable-toggle';
+    control.dataset.symbol = variable.dataset.symbol;
+    control.setAttribute('aria-pressed','false');
+    variable.replaceWith(control); control.append(variable);
+    const scope = getScope(control);
+    control.setAttribute('aria-label',`关联 ${variable.textContent}，作用域 ${scope.id}`);
+    control.addEventListener('click', () => {
+      const selected = control.getAttribute('aria-pressed') !== 'true';
+      const matches = [...scope.querySelectorAll('.variable-toggle')].filter(item => getScope(item) === scope && item.dataset.symbol === control.dataset.symbol);
+      matches.forEach(item => item.setAttribute('aria-pressed',String(selected)));
+      status.textContent = `${scope.id} 中 ${variable.textContent} 的 ${matches.length} 处关联已${selected ? '选中' : '取消'}。`;
+    });
+  });
+  const groups = new Map();
+  refs.forEach(ref => {
+    const section = ref.closest('[data-section]');
+    if (!groups.has(section)) groups.set(section,[]);
+    groups.get(section).push(ref);
+  });
+  document.getElementById('backlink-title').textContent = `用于 ${refs.length} 处 · ${groups.size} 个章节`;
+  for (const [section,entries] of groups) {
+    const heading = document.createElement('h4'); heading.textContent = section.querySelector('h2').textContent;
+    const list = document.createElement('ul');
+    entries.forEach((ref,index) => {
+      const item = document.createElement('li'); const link = document.createElement('a');
+      link.href = `#${ref.id}`; link.dataset.journey = ''; link.textContent = `使用环境 · 第 ${index+1} 处：${ref.parentElement.textContent.slice(0,42)}`;
+      item.append(link);list.append(item);
+    });
+    document.getElementById('backlink-list').append(heading,list);
+  }
+  document.getElementById('backlinks').hidden = false;
+  const mark = node => {
+    document.querySelectorAll('.landing').forEach(item => item.classList.remove('landing'));
+    node.classList.add('landing');
+    setTimeout(() => node.classList.remove('landing'),1600);
+  };
+  document.addEventListener('click', event => {
+    const link = event.target.closest('a[data-journey]');
+    if (!link || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const target = document.getElementById(decodeURIComponent(link.hash.slice(1)));
+    if (!target) return;
+    event.preventDefault();
+    const source = panel.contains(link) ? origin : link;
+    if (!source.id) source.id = `journey-link-${[...document.links].indexOf(source)}`;
+    const depth = history.state?.readingDepth || 0;
+    const saved = snapshot(source);
+    history.replaceState({...history.state,reading:saved,readingDepth:depth},'');
+    if (panel.isConnected && panel.matches(':popover-open')) panel.hidePopover();
+    target.setAttribute('tabindex','-1'); target.scrollIntoView({block:'start'}); target.focus({preventScroll:true});
+    history.pushState({reading:snapshot(target),readingDepth:depth+1},'',link.hash);
+    mark(target); updateReturn();
+  });
+  addEventListener('popstate', () => {if (history.state?.reading) restore(history.state.reading);updateReturn();});
+  returnButton.addEventListener('click',() => {if (history.state?.readingDepth > 0) history.back();});
+  returnButton.hidden = false;updateReturn();
+})();
+</script>
+</html>
