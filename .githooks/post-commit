@@ -1,38 +1,29 @@
 #!/usr/bin/env bash
 set -euo pipefail
+[ "$(git branch --show-current)" = main ] || exit 0
 
-warn() {
-  printf '自动推送未完成：%s；本地提交已保留。\n' "$1" >&2
-  exit 1
+exec 9>"$(git rev-parse --git-common-dir)/auto-push.lock"
+flock -w 300 9
+commit="$(git rev-parse HEAD)"
+result=0
+timeout 45s env GIT_TERMINAL_PROMPT=0 git push origin "$commit":main || {
+  printf '推送失败；保留本地提交，继续更新本机技能。\n' >&2
+  result=1
 }
 
-branch="$(git symbolic-ref --quiet --short HEAD || true)"
-[ "$branch" = main ] || exit 0
-
-expected='https://github.com/Nilexpr/personal-agent-skills.git'
-origin="$(git config --get-all remote.origin.url || true)"
-push_url="$(git config --get-all remote.origin.pushurl || true)"
-[ "$origin" = "$expected" ] || warn 'origin 与本项目的 GitHub 仓库不一致'
-[ -z "$push_url" ] || [ "$push_url" = "$expected" ] || warn 'origin 的推送地址不一致'
-
-git_dir="$(git rev-parse --git-common-dir)"
-exec 9>"$git_dir/auto-push.lock"
-flock -w 300 9 || warn '等待其他提交同步超时'
-
-commit="$(git rev-parse HEAD)"
-repo="$(git rev-parse --show-toplevel)"
-result=0
-
-if ! timeout 45s env GIT_TERMINAL_PROMPT=0 \
-  git -c credential.interactive=false push origin "$commit":refs/heads/main; then
-  printf '自动推送未完成；本地提交已保留，继续更新本机技能。\n' >&2
-  result=1
+snapshot="$(mktemp -d)"
+trap 'rm -rf -- "$snapshot"' EXIT
+git archive "$commit" skills | tar -x -C "$snapshot"
+exec 8>/tmp/personal-agent-skills-install.lock
+flock -w 180 8
+if ! timeout 120s env DISABLE_TELEMETRY=1 npx --yes skills@1.5.22 add "$snapshot" \
+  --skill '*' --global --agent codex --copy --yes >"$snapshot/install.log" 2>&1; then
+  cat "$snapshot/install.log" >&2
+  exit 1
 fi
-
-if ! flock -w 180 /tmp/personal-agent-skills-install.lock \
-  python3 "$repo/scripts/install-committed-skills.py" "$commit"; then
-  printf '本机技能更新未完成；请检查以上安装错误。\n' >&2
-  result=1
-fi
-
+for source in "$snapshot"/skills/*; do
+  [ -f "$source/SKILL.md" ] || continue
+  diff -qr "$source" "$HOME/.agents/skills/$(basename "$source")" || exit 1
+done
+printf '本机技能已更新并核验。\n'
 exit "$result"
