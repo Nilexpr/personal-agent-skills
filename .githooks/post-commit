@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+warn() {
+  printf '自动推送未完成：%s；本地提交已保留。\n' "$1" >&2
+  exit 1
+}
+
+branch="$(git symbolic-ref --quiet --short HEAD || true)"
+[ "$branch" = main ] || exit 0
+
+expected='https://github.com/Nilexpr/personal-agent-skills.git'
+origin="$(git config --get-all remote.origin.url || true)"
+push_url="$(git config --get-all remote.origin.pushurl || true)"
+[ "$origin" = "$expected" ] || warn 'origin 与本项目的 GitHub 仓库不一致'
+[ -z "$push_url" ] || [ "$push_url" = "$expected" ] || warn 'origin 的推送地址不一致'
+
+git_dir="$(git rev-parse --git-common-dir)"
+exec 9>"$git_dir/auto-push.lock"
+flock -w 30 9 || warn '等待其他推送超时'
+
+if ! timeout 45s env GIT_TERMINAL_PROMPT=0 \
+  git -c credential.interactive=false push origin HEAD:refs/heads/main; then
+  warn '网络、认证或远端分支检查失败'
+fi
