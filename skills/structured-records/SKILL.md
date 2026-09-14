@@ -28,7 +28,7 @@ Root Context and Glossary are shared across the workspace; goal records apply to
 
 Read root Context if present and consult relevant Glossary entries. Follow applicable judgments and definitions; propose revisions when their basis or applicability changes.
 
-When the user selects or corrects a method, constraint, or preference, apply Recording checks before closing the turn. For qualifying Context, append a brief question to the normal response asking whether to record the decision within its confirmed scope; follow Changes before writing.
+When the user selects or corrects a method, constraint, or preference, apply Recording checks before closing the turn. For qualifying Context, append a concrete proposal within its confirmed scope to the normal response, using the full draft or exact diff required by Changes. Obtain the required approval before writing.
 
 Handle requests needing no continuing tracking directly, using applicable record rules. Otherwise:
 
@@ -72,6 +72,9 @@ Use these templates for Context, Progress, and Glossary; statements or definitio
 
 ## Changes
 
+The following approval rules are defaults; user instructions take precedence.
+
 Before creating, editing, renaming, or deleting `GOAL.md`, `CONTEXT.md`, or `GLOSSARY.md`, show the full proposed file when absent or the exact diff when present, then wait for approval. Apply only approved content; if it no longer applies, reread and propose again.
+Verify that persisted content matches the approved version.
 Glossary wording and formatting edits that preserve meaning need no prior approval.
 `PROGRESS.md` needs no prior approval. After changing it, name the goal and summarize the result.
