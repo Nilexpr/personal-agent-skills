@@ -17,9 +17,22 @@ push_url="$(git config --get-all remote.origin.pushurl || true)"
 
 git_dir="$(git rev-parse --git-common-dir)"
 exec 9>"$git_dir/auto-push.lock"
-flock -w 30 9 || warn '等待其他推送超时'
+flock -w 300 9 || warn '等待其他提交同步超时'
+
+commit="$(git rev-parse HEAD)"
+repo="$(git rev-parse --show-toplevel)"
+result=0
 
 if ! timeout 45s env GIT_TERMINAL_PROMPT=0 \
-  git -c credential.interactive=false push origin HEAD:refs/heads/main; then
-  warn '网络、认证或远端分支检查失败'
+  git -c credential.interactive=false push origin "$commit":refs/heads/main; then
+  printf '自动推送未完成；本地提交已保留，继续更新本机技能。\n' >&2
+  result=1
 fi
+
+if ! flock -w 180 /tmp/personal-agent-skills-install.lock \
+  python3 "$repo/scripts/install-committed-skills.py" "$commit"; then
+  printf '本机技能更新未完成；请检查以上安装错误。\n' >&2
+  result=1
+fi
+
+exit "$result"
