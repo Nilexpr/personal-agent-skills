@@ -1,44 +1,46 @@
 ---
 name: learn
-description: Develop understanding of unfamiliar topics through authoritative research and progressive teaching. Use for introductory or in-depth learning beyond quick factual answers.
+description: Guided learning of a topic.
 ---
 
-## Definitions
+## Learning materials
 
-- A **foundational understanding** connects a topic's definition, purpose or context, essential workings, and boundaries well enough to explain it and distinguish it from related ideas.
-- A **unit** is a lesson with one independently checkable outcome, achievable from explicit prerequisites without depending on later lessons.
-- A **chapter** groups units that jointly answer a substantial question or establish a coherent capability, verified through a task combining their outcomes.
+When locating, creating, or updating learning materials, read [RECORDS.md](RECORDS.md) for their roles and locations. Resume from the current plan, learning record, and relevant materials.
 
 ## Workflow
 
-Apply Changes whenever feedback or observed difficulty reveals a problem during learning.
+1. Establish or resume the learning goal from the learner's questions and existing records, specifying what they should be able to explain, do, or judge. Propose a starting point when the learner is unsure; ask only about missing information that materially changes the direction.
+2. When establishing or revising the plan, read [PLANNING.md](PLANNING.md). Use it with Source checks to present an outline covering the agreed scope, with sufficient evidence to teach the next unit; make prerequisites and material source gaps explicit.
+3. Teach through the Teaching and feedback loop, adjusting explanations, pace, and sequence as the learner's reasoning and difficulties become apparent. Address gaps that block the next step; carry deferred issues forward with a reason and a next check.
+4. Close each unit by returning to its question and distinguishing demonstrated understanding from unresolved or unverified outcomes. At chapter and plan completion, connect the unit outcomes to assess whether the broader learning goal has been met.
 
-1. Read existing notes; clarify the topic, purpose, prior knowledge, and scope. Express target depth as observable outcomes; state introductory assumptions when unspecified. Curiosity is a valid purpose.
-2. Map definitions, context, workings, relationships, examples, limits, and prerequisites; research them using Source checks before teaching.
-3. For substantial topics, present a complete outline mapping essential topics to chapters and units ordered by prerequisites, using Formats. Keep it visible while detailing upcoming units.
-4. Begin with a concise definition in familiar language; teach using the Unit format, one unit at a time unless continuous explanation is requested. Introduce concepts as needed for the current question; explain uncertain prerequisites as unfamiliar. Use contrasting cases and diagrams when helpful; qualify analogies.
-5. At a unit transition, assess existing learner evidence against the current unit's outcome before advancing the dialogue. If evidence is insufficient or inconsistent, use a brief new case targeting the uncertainty; ask for the learner's prediction or reasoning before explaining. Allow explicit skipping and keep unsupported outcomes unverified. Close chapters with unfamiliar tasks combining their units, using only declared prerequisites. Before closing the plan, reconcile coverage and user evidence with required outcomes; identify what remains unverified or deferred.
-6. Update notes using Formats and adapt using Changes. Material presented alone does not demonstrate understanding.
+Maintain learning records as goals, evidence, or unresolved issues change, preserving enough context to resume at the next meaningful step.
 
 ## Source checks
 
-- Use official sources first; without one authority, use original works, papers, standards, or authoritative scholarly institutions. Honor source restrictions; identify each source's role and scope.
-- Read original material and check applicable versions, dates, and jurisdictions. Cite claims where used, distinguishing facts, attributed positions, and inferences.
-- Essential answers require supporting evidence. Disclose gaps and disagreements and narrow conclusions; a gap preventing a reliable definition blocks that explanation.
+- Use official sources first; without one authority, use original works, papers, standards, or authoritative scholarly institutions. Honor source restrictions and identify source roles and scope.
+- Read originals; check applicable versions, dates, and jurisdictions, and recheck changeable facts before reuse. Cite claims where used; distinguish facts, attributed positions, and inferences.
+- Distinguish authoritative requirements, common practices, and teaching simplifications; substantiate consensus claims with relevant primary evidence and explain disagreements and applicability.
+- Support essential answers with evidence; disclose gaps and narrow conclusions. A gap preventing a reliable definition blocks that explanation.
 
-## Formats
+## Teaching and feedback
 
-- **Plan:** purpose, scope, depth, chapters and unit outcomes, prerequisites, sources, completion evidence, optional branches, exclusions, and gaps.
-- **Unit:** motivating question → prerequisites and reproducible start → explanation and concrete example → variation, expected result or reasoning criteria, and feedback → answer and limits → next question arising from the remaining gap.
-- **Notes:** use the established location, otherwise `learning/<topic>.md`. Preserve the plan, explanations, terms and relationships, examples, sources with relevant dates or versions, limits, demonstrated understanding, and unresolved questions. Keep reference detail available without inserting it all into the conversation.
-- **HTML:** when navigation or interaction reduces reading effort, read [LESSONS.md](LESSONS.md).
+Teach one unit at a time, honoring requests for continuous explanation or self-paced reading. Begin with a concise definition in familiar language; introduce concepts as the current question requires and explain uncertain prerequisites as unfamiliar.
 
-## Changes
+Unit sequence: motivating question → prerequisites and reproducible start → explanation and worked example → participation and feedback → answer, use, and limits → next question arising from the remaining gap.
 
-Use feedback and observed errors to locate the problem in understanding, material accuracy or clarity, or pace; verify uncertain causes.
+- **Participation:** initiate focused predictions, explanations, or decisions at meaningful reasoning points, using existing evidence to choose the starting point and avoid repetition. Wait for the learner's response before revealing answers or continuing teaching that depends on it.
+- **Question quality:** establish the target outcome, necessary conditions, verified answer basis, and reasoning criteria before asking; choose a task whose responses distinguish the uncertainty being investigated. Show the learner its purpose and sufficient context; verify implementation premises against applicable source code and, when needed, execution.
+- **Continuity:** connect explanation, application, and checks through the same case; use contrasts, diagrams, and qualified analogies where helpful. When difficulty comes from a missing explanation or unclear path, teach that connection before another check; for implementation outcomes, connect concepts to actual code, data, or execution.
+- **Feedback:** assess reasoning, accept supported alternatives, and explain what the response establishes and leaves unresolved. Target that gap with an explanation or hint, then reassess through application under changed conditions.
+- **Evidence:** use only shared or inspected work and record the help given; distinguish recall, guided application, and independent transfer. Judge transfer from reasoning under meaningfully changed conditions with the needed reasoning unsupplied; viewing material or repeating a supplied answer establishes neither transfer nor mastery.
 
-Adjust explanations, examples, materials, pace, or unit order from feedback and preferences, and show what changed. Substantial prerequisite gaps get preparatory units. Preserve prerequisites; revise the agreed goal, scope, or depth only with user agreement.
+Distinguish gaps in understanding from material errors, unclear explanations, and pace problems; verify uncertain causes.
 
-Record the issue, evidence, adjustment, and next check in topic notes. Carry unresolved issues into relevant later units; use existing work or a brief new case to check whether the adjustment helped. Close understanding gaps with demonstrated reasoning or application; verify material corrections against sources and teaching usability through learner feedback or observed use.
+Adjust explanations, examples, materials, and pace and show what changed; when the plan needs to change, follow [PLANNING.md](PLANNING.md).
 
-Preserve the basis of conclusions and recheck changeable facts before reuse.
+Close understanding gaps using the evidence rules above, verify factual corrections against sources, and assess usability through learner feedback or observed use.
+
+## HTML
+
+When navigation or interaction reduces reading effort, read [LESSONS.md](LESSONS.md).

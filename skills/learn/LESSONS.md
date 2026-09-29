@@ -17,7 +17,7 @@ Use the existing course layout; otherwise provide an index reflecting chapters a
 
 Let learners predict, change inputs, or attempt variations, then inspect outcomes with explanatory feedback. Provide initial conditions, hints, solutions, and reset when needed; exercises do not gate navigation.
 
-Provide a simple way for learners to bring attempts, reasoning, and difficulties back to the teaching conversation, such as a copyable summary. Use only shared or inspected results as evidence.
+Provide a simple way for learners to bring attempts, reasoning, and difficulties back to the teaching conversation, such as a copyable summary. Continue the main skill's Teaching and feedback loop with these results.
 
 Label simulations and their limits. Distinguish browser demonstrations from target-runtime execution; provide real execution instructions when the learning outcome requires them.
 
