@@ -1,5 +1,5 @@
 ---
-name: structured-records
+name: structure
 description: Maintain standard files for goals, guiding judgments and decisions, verified results, and shared terminology when information must persist across sessions or an existing goal is being continued.
 ---
 
@@ -22,6 +22,8 @@ description: Maintain standard files for goals, guiding judgments and decisions,
     PROGRESS.md
 ```
 
+This skill manages only the record files shown above; its approval requirements apply only to changes to those files.
+
 Root Context and Glossary are shared across the workspace; goal records apply to one goal. Create Context, Progress, and Glossary when content qualifies; goal-specific records require an approved goal.
 
 ## Workflow
@@ -30,11 +32,11 @@ Read root Context if present and consult relevant Glossary entries. Follow appli
 
 When the user selects or corrects a method, constraint, or preference, apply Recording checks before closing the turn. For qualifying Context, append a concrete proposal within its confirmed scope to the normal response, using the full draft or exact diff required by Changes. Obtain the required approval before writing.
 
-Handle requests needing no continuing tracking directly, using applicable record rules. Otherwise:
+Check existing goals before deciding whether to create one:
 
-1. Select the specified goal or match the request against `goals/*/GOAL.md`; ask the user when ambiguous.
-2. If none matches or a separate goal is requested, clarify its definition from confirmed information and necessary read-only investigation until independently understandable and judgeable; follow Changes before pursuing the goal.
-3. Read and state the selected goal; read its Context and Progress. Follow applicable Context; propose revisions when its basis or applicability changes, or the request changes the goal.
+1. Compare the request with `goals/*/GOAL.md` by desired state, scope, constraints, and satisfaction conditions, including any goal the user specifies. Reuse goals that clearly cover it. If a related request cannot be handled under the existing definitions, explain the mismatch and clarify the intended definitions with the user before proceeding. Use what the user has already clarified and ask only about unresolved points.
+2. Propose a new goal only when the request is unrelated to existing goals and needs continuing tracking. Clarify new or revised definitions from confirmed information and necessary read-only investigation until independently understandable and judgeable; follow Changes to create or revise the affected `GOAL.md` files.
+3. Read and state the applicable goals; read their Context and Progress. Follow applicable Context; propose revisions when its basis or applicability changes. If no goal applies and no continuing tracking is needed, handle the request directly.
 4. Verify recorded results before treating them as current facts; correct inaccuracies and retain results with continuing reference value.
 5. Use Recording checks, Formats, and Changes to maintain records.
 
@@ -48,8 +50,8 @@ Split mixed content into claims and route each by purpose; leave unmatched claim
 - Does it record an achieved result with evidence and verification conditions? Record Progress.
 - Does a sourced or agreed term definition prevent ambiguity or repeated explanation in later sessions? Propose Glossary.
 
-Keep the minimum sufficient statement and its basis; reference existing sources and remove redundant or no longer useful content.
-Record verified intermediate results only when later sessions need them to continue the work. When a final result is established, consolidate supporting evidence and remove intermediate records that no longer have independent reference value.
+Keep the latest valid record for each subject and scope, with its basis, evidence, and limits. On each update, reconcile related entries and replace superseded or duplicate content under Changes; reference existing sources.
+Retain verified intermediate results only while needed to continue the work; consolidate them into the current result when superseded.
 
 ## Formats
 
