@@ -1,79 +1,62 @@
 ---
 name: structure
-description: Maintain standard files for goals, guiding judgments and decisions, verified results, and shared terminology when information must persist across sessions or an existing goal is being continued.
+description: Maintain GOAL.md, DECISIONS.md, PROGRESS.md, and GLOSSARY.md for cross-session work. Use for goal-related work (including discussions), user choices or corrections affecting later work, or record maintenance.
 ---
 
-## Definitions
+## Records
 
 - A **goal** is a desired end state or maintained state, specified with the scope, constraints, and conditions needed to judge satisfaction.
-- **Context** is the established judgments and decisions that guide how goals are pursued across sessions.
+- **Decisions** are established judgments and confirmed choices that subsequent work should follow, recorded with their basis and applicable scope.
 - **Progress** is an evidence-backed record of results achieved toward a goal, with each claim bounded by its recorded scope and conditions.
-- A **glossary** records term meanings that subsequent sessions need to interpret consistently across the workspace.
-
-## Structure
+- A **glossary** records term meanings that subsequent sessions need to interpret consistently under the record root.
 
 ```text
-<workspace>/
-  CONTEXT.md
+<root>/
+  DECISIONS.md
   GLOSSARY.md
   goals/<goal-name>/
     GOAL.md
-    CONTEXT.md
+    DECISIONS.md
     PROGRESS.md
 ```
 
-This skill manages only the record files shown above; its approval requirements apply only to changes to those files.
+## 1. Read shared records
 
-Root Context and Glossary are shared across the workspace; goal records apply to one goal. Create Context, Progress, and Glossary when content qualifies; goal-specific records require an approved goal.
+Keep all record paths relative to this conversation's `cwd` (`<root>`). Read applicable root Decisions and relevant Glossary entries even for one-off requests.
 
-## Workflow
+## 2. Select the goal
 
-Read root Context if present and consult relevant Glossary entries. Follow applicable judgments and definitions; propose revisions when their basis or applicability changes.
+Standalone shared-record edits need no goal. For goal-related work, reuse a known goal when its definition covers the request; otherwise compare existing goals by state, scope, constraints, and satisfaction conditions. Clarify unresolved mismatches before dependent work. Propose new goals only for unrelated work needing continued tracking; make definitions independently understandable and judgeable. State applicable goals and read relevant Decisions and Progress, even for small tasks.
 
-When the user selects or corrects a method, constraint, or preference, apply Recording checks before closing the turn. For qualifying Context, present the proposed record and its scope for approval under Changes in the same response.
+## 3. Verify and clarify
 
-Check existing goals before deciding whether to create one:
+Recheck results this task relies on against recorded conditions; correct inaccuracies. Follow established judgments and confirmed choices; propose revisions when their basis or scope changes.
 
-1. Compare the request with `goals/*/GOAL.md` by desired state, scope, constraints, and satisfaction conditions, including any goal the user specifies. Reuse goals that clearly cover it. If a related request cannot be handled under the existing definitions, explain the mismatch and clarify the intended definitions with the user before proceeding. Use what the user has already clarified and ask only about unresolved points.
-2. Propose a new goal only when the request is unrelated to existing goals and needs continuing tracking. Clarify new or revised definitions from confirmed information and necessary read-only investigation until independently understandable and judgeable; follow Changes to create or revise the affected `GOAL.md` files.
-3. Read and state the applicable goals; read their Context and Progress. Follow applicable Context; propose revisions when its basis or applicability changes. If no goal applies and no continuing tracking is needed, handle the request directly.
-4. Verify recorded results before treating them as current facts; correct inaccuracies and retain results with continuing reference value.
-5. Use Recording checks, Formats, and Changes to maintain records.
+When ambiguity or conflicting usage affects records, clarify meanings using examples, edge cases, or source checks as needed. Distinguish hypothetical cases from facts and use consistent names. A definition is ready when relevant ambiguities are resolved, related concepts are distinguished, and its source or confirmed agreement is clear; otherwise keep it provisional.
 
-## Recording checks
+## 4. Select what to preserve
 
-Split mixed content into claims and route each by purpose; leave unmatched claims unrecorded.
+Keep only information whose omission would materially hinder later work. Split mixed claims:
 
-- Would omission materially hinder later understanding, decisions, actions, or verification? If not, omit it.
-- Does it define the desired state, scope, constraints, or satisfaction conditions? Propose a Goal change.
-- Does it express an established judgment or choice that later sessions need, with a basis and applicable scope? Propose Context.
-- Does it record an achieved result with evidence and verification conditions? Record Progress.
-- Does a sourced or agreed term definition prevent ambiguity or repeated explanation in later sessions? Propose Glossary.
+- Goal: satisfaction requirements.
+- Decisions: judgments and choices with their basis; use root Decisions for shared guidance, otherwise the goal's Decisions.
+- Progress: achieved results and evidence.
+- Glossary: concise meanings and necessary distinctions or relationships, including common terms when useful.
 
-Keep the latest valid record for each subject and scope, with its basis, evidence, and limits. On each update, reconcile related entries and replace superseded or duplicate content under Changes; reference existing sources.
-Retain verified intermediate results only while needed to continue the work; consolidate them into the current result when superseded.
+Evaluate judgments and choices separately from artifacts and results; an artifact's form alone does not preserve intent. Cross-reference existing records instead of duplicating them.
+
+## 5. Propose and apply changes
+
+Create qualifying records; goal-specific records require an approved goal. Reconcile affected entries, replace superseded or duplicate content, and consolidate intermediate results while retaining evidence with continuing value.
+
+These rules cover only records. For Goal, Decisions, or Glossary, show the full new file or exact diff and obtain approval, including renames and deletions; existing approval for that content suffices. Present the proposal and question without routine policy explanations or quotations. Repropose approved content if it no longer applies. Meaning-preserving Glossary edits and Progress updates need no approval. Continue independent work pending clarification or approval.
+
+## 6. Check and report
+
+Record maintenance is complete when qualifying information has appropriate records or scoped proposals, authorized changes are saved, and affected records agree. Check each new or corrected judgment or choice is explicitly captured with its meaning and scope. Report changes, goal results, and unresolved matters.
 
 ## Formats
 
-`GOAL.md`: require `# <goal name>`, `## Goal` (state and scope), and `## Satisfied when` (criteria). Add `## Why` and `## Constraints` when applicable. Satisfying a finite goal completes it; continuing goals remain active.
+Goal: `# <name>`, `## Goal`, `## Satisfied when`; add `## Why` and `## Constraints` when applicable. Finite goals complete when satisfied; continuing goals remain active.
 
-Use these templates for Context, Progress, and Glossary; statements or definitions and Basis/Evidence are required. Add Scope or other qualifiers when they affect interpretation.
-
-```markdown
-- **<Judgment or decision>**
-  - Basis: <reasoning and supporting sources>
-  - Scope: <where the conclusion applies>
-
-- **<Achieved result>**
-  - Evidence: <source or reproducible check>
-  - Scope: <verification conditions and limits>
-
-- **<Term>**: <Definition>
-  - Basis: <source or confirmed agreement>
-```
-
-## Changes
-
-Before creating, editing, renaming, or deleting `GOAL.md`, `CONTEXT.md`, or `GLOSSARY.md`, show the full proposed file when absent or the exact diff when present, then wait for approval. Apply only approved content; if it no longer applies, reread and propose again.
-Glossary wording and formatting edits that preserve meaning need no prior approval.
-`PROGRESS.md` needs no prior approval. After changing it, name the goal and summarize the result.
+Decisions: judgment or choice and `Basis` explaining why. Progress: result and `Evidence` providing a source or reproducible check. Glossary: term, definition, and `Basis` identifying its source or confirmed agreement. Include scope and limits where interpretation depends on them.
