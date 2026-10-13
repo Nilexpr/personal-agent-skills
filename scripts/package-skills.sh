@@ -3,7 +3,8 @@
 set -euo pipefail
 
 repo_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-name="personal-agent-skills-$(date '+%Y%m%d-%H%M%S')"
+[ "$#" -eq 0 ] || { echo "用法：bash scripts/package-skills.sh" >&2; exit 1; }
+name="personal-agent-skills-$(date '+%Y%m%d-%H%M%S')-$$"
 output="$repo_dir/$name.zip"
 temp_dir="$(mktemp -d)"
 package_dir="$temp_dir/$name"
@@ -13,25 +14,24 @@ cleanup() {
 }
 trap cleanup EXIT
 
-mkdir -p "$package_dir/skills"
+mkdir -p "$package_dir"
 
-skill_count=0
-for skill_file in "$repo_dir"/skills/*/SKILL.md; do
-  [ -f "$skill_file" ] || continue
-  skill_dir="$(dirname "$skill_file")"
-  cp -R "$skill_dir" "$package_dir/skills/"
-  skill_count=$((skill_count + 1))
+# 明确列出项目文件，避免带入本地配置、会话或旧压缩包。
+for entry in README.md AGENTS.md DECISIONS.md .gitignore skills agentmd goals scripts; do
+  cp -R "$repo_dir/$entry" "$package_dir/$entry"
 done
 
-[ "$skill_count" -gt 0 ] || { echo "没有找到可打包的 skill" >&2; exit 1; }
-
-branch="$(git -C "$repo_dir" branch --show-current)"
-git -C "$package_dir" init --quiet --template= --initial-branch="${branch:-main}"
+if [ -d "$repo_dir/references" ]; then
+  cp -R "$repo_dir/references" "$package_dir/references"
+fi
 
 (
   cd "$temp_dir"
-  /usr/bin/zip -q -r -y -X "$output" "$name"
+  /usr/bin/zip -q -r -y -X "$temp_dir/$name.zip" "$name" \
+    -x '*/.DS_Store' '*/__pycache__/*' '*.pyc' '*.zip' \
+       '*/target/' '*/target/*' '*/.dependencies/' '*/.dependencies/*'
 )
 
-/usr/bin/unzip -tq "$output" >/dev/null
-echo "已生成：${output}（${skill_count} 个 skill）"
+/usr/bin/unzip -tq "$temp_dir/$name.zip" >/dev/null
+mv "$temp_dir/$name.zip" "$output"
+echo "已生成：${output}"

@@ -2,3 +2,7 @@
 .agents/skills/
 skills-lock.json
 *.zip
+/sessions/
+/references/
+/scripts/dependencies/target/
+/.dependencies/

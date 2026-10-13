@@ -1,59 +1,106 @@
-# 维护个人 Agent Skills
+# 维护个人 Skills 与 AGENTS.md
 
-- **`structured-records` 原版已完成全局安装。**
-  - Evidence: 此前安装输出确认 Cline、Codex、Cursor 和 GitHub Copilot 可用；2026-09-10 本次修订前，已核对仓库文件与 `../../skills/structured-records/SKILL.md` 内容一致。
-  - Scope: 这是此前安装结果；本次仓库修订后，已安装文件与源文件不再一致。
+本文件记录已取得的结果及验证范围；长期判断与选择见 [Decisions](DECISIONS.md)，目标范围与约束见 [Goal](GOAL.md)。
 
-- **`structured-records` 已加入共用术语表与中间结果清理规则，并完成独立评审。**
-  - Evidence: [SKILL.md](../../skills/structured-records/SKILL.md)；2026-09-10 在工作区根目录运行 `python3 【原电脑本地路径已移除】 skills/structured-records`，输出 `Skill is valid!`；最终文件 SHA-256 为 `b934d29dc2b4a8e100253b4d16a8dde30e06a65e20416bb2eaba1c82f99f9412`。本次对话中，不继承讨论历史的独立评审通过三个请求推演检查规则，并复核了目标批准前的只读调查边界。
-  - Scope: 验证限于文件格式、独立阅读及情景推演，尚未进行真实项目行为验证；新版尚未重新安装。
+## revise
 
-- **已提供个人 skills 的离线打包脚本。**
-  - Evidence: [package-skills.sh](../../scripts/package-skills.sh)；2026-09-10 在工作区根目录运行 `bash -n scripts/package-skills.sh`，退出码为 0。既有记录报告 `personal-agent-skills-20260902-214204.zip` 曾通过归档校验及解压比对。
-  - Scope: 本次仅检查脚本内容和语法，未执行打包；原 ZIP 当前不在工作区，历史归档验证结果未复验。
+- **revise 已按 writing-for-agents 与 writing 全量优化，并完成既定范围的全局安装。**
+  - Evidence: 2026-10-12 按本目标 [Decisions](DECISIONS.md) 的确认结果，将[revise](../../skills/revise/SKILL.md)共同规范收敛为 writing 的全文评审和 Matt 同类 skill 的主体结构参考；保留范围、设计预期、独立理解评审及上下游依赖维护。全文由 744 词调整为 579 词，SHA-256 为 `9a017ebcb975efcae67872032596ab1229aff0bae7977818c110e07680f54b4a`。
+  - Evidence: 本会话按两份写作指导及 SKILL-MECHANICS 全量检查正文；应用前，新建不继承编写历史的评审会话，只提供候选稿与正常引用材料。其对用途、范围、调用、流程和写入条件的解释与已确认预期一致，未发现阻断理解的问题；保存内容与被评审候选稿逐字一致。
+  - Evidence: 在 Fish 中执行 `env DISABLE_TELEMETRY=1 npx skills add /Users/lvhongwei/workspace/project/personal-agent-skills --skill revise structure --global --agent cline codex cursor github-copilot zed --yes`，skills 1.7.2 退出码为 0，报告两项均已安装到 Cline、Codex、Cursor、GitHub Copilot、Zed。`~/.agents/skills/revise` 与源码文件集合和全部字节一致；两侧格式校验、相对引用和差异空白检查通过。structure 同步结果见下节。
+  - Evidence: 依赖工具已复核上下游并更新两条关系说明；AGENTS.md、README 和既有调用方继续适用。Matt 结构参考入口位于项目 `references/matt-skills/README.md`，属于不纳入 Git 和依赖图的本地参考，缺失时需补齐可读来源。
+  - Scope: 已完成源码、相关记录和安装同步，未提交或发布。独立理解评审不等于原场景重放、实际任务效果或各客户端自动触发已验证；既有全仓覆盖待复核项仍按依赖工具结果处理。
 
-- **已创建通用学习技能 `learn` 首版。**
-  - Evidence: [SKILL.md](../../skills/learn/SKILL.md)；2026-09-10 在仓库根目录运行 `python3 【原电脑本地路径已移除】 skills/learn`，输出 `Skill is valid!`；文件为 38 行、461 个按空白分隔的词。设计参考已通过 GitHub MCP 读取的 [Matt Pocock teach](https://github.com/mattpocock/skills/blob/main/skills/productivity/teach/SKILL.md)，围绕本次要求收敛为资料核实、概念解释、理解校正和学习笔记。
-  - Scope: 已检查格式及条款对官方资料、无统一官方来源、资料缺口、概念边界和理解验证的覆盖；尚未进行真实主题的学习效果验证，未安装、发布或提交 Git。
+- **revise 初版已按确认稿实现，并安装到既定全局范围。**
+  - Evidence: 2026-10-09 新增 [SKILL.md](../../skills/revise/SKILL.md)，保留已确认正文并加入本仓库管理范围限定；全文 615 词、4404 字节，SHA-256 为 `7ebbc98daf1b947d08946314c855fabaa0f47df4a70b4517a3461490ee186e6f`。README 已加入入口，设计目的与修订边界已保存到本目标的 Decisions。
+  - Evidence: 在 Fish 中执行 `env DISABLE_TELEMETRY=1 npx skills add /Users/lvhongwei/workspace/project/personal-agent-skills --skill revise --global --agent cline codex cursor github-copilot zed --yes`，退出码为 0；安装器报告已复制到 `/Users/lvhongwei/.agents/skills/revise`，覆盖 Cline、Codex、Cursor、GitHub Copilot 和 Zed。源码与安装目录的文件集合及内容逐字节一致；两侧 `quick_validate.py`、README 入口检查和 `git diff --check` 均通过。
+  - Scope: 按已确认稿保存，全文超过 600 词精简目标 15 词；未逐客户端验证自动发现与触发，未进行行为评测，不能据此宣称使用效果改善。
 
-- **已补充 `learn` 的学习顺序与收获检验要求。**
-  - Evidence: [SKILL.md](../../skills/learn/SKILL.md)；2026-09-10 依据用户关于逐步引出未知问题和明确学习用途的反馈修订，要求以用户关心的问题为起点，为各步确定问题、前置认识和回答后的作用，并用当前缺口引出下一步，结束时回到起始问题。当前文件 38 行、474 个按空白分隔的词；再次运行 `quick_validate.py skills/learn`，输出 `Skill is valid!`。参考结构已核对 [teach](https://github.com/mattpocock/skills/blob/main/skills/productivity/teach/SKILL.md) 及其 Mission、Resources 和 Learning Record 格式文件。
-  - Scope: 完成条款修订及格式校验；真实学习中的动机、理解与迁移效果尚待验证。逐句中英对照的展示约定已存在于根 Context，本次未修改 Goal 或 Context。
+## structure
 
-- **已为 `learn` 增加可独立完成的学习单元和 HTML 教学说明。**
-  - Evidence: [SKILL.md](../../skills/learn/SKILL.md) 定义 unit 并链接 [LESSONS.md](../../skills/learn/LESSONS.md)，后者规定从成果倒推单元、按前置依赖排序、在单元内提供练习与反馈，以及按阅读和交互需要生成 HTML。2026-09-10 运行 `python3 【原电脑本地路径已移除】 skills/learn`，输出 `Skill is valid!`；主文件 40 行、486 个按空白分隔的词，说明文件 33 行、490 个词。已读取本机 teach 原文，并核对 [Android 官方课程](https://developer.android.com/courses/android-basics-compose/course)、[mdBook 阅读说明](https://rust-lang.github.io/mdBook/guide/reading.html) 和 [Brown 互动 Rust Book](https://rust-book.cs.brown.edu/)。
-  - Scope: 完成规则编写、格式校验与引用文件检查；另提供状态更新的对话内简化演示，尚未做浏览器交互验证或真实教学验证。本次没有开始安卓课程或修改已安装的 teach。
+- **structure 已支持默认工作区及显式指定记录根，并随 revise 完成全局同步。**
+  - Evidence: 2026-10-12 仅替换[SKILL.md](../../skills/structure/SKILL.md)的记录根段落：未指定时使用会话 cwd，用户或调用流程明确指定时使用该路径，并区分记录根相对路径与记录文件路径的解析基准。与本轮开工快照比较，其余内容逐字一致；当前全文 963 词，SHA-256 为 `a02df84d9fad0dfe1be571b3db9c8aab4363a637cb7141b87636277e9c223e99`，格式、相对链接与差异空白检查通过。
+  - Evidence: 此前确认的记录分工与独立目标选择继续保留，依据见 [Decisions 的 structure 小节](DECISIONS.md#structure)。2026-10-09 的 938 词版本及其校验值 `42a317de107f981bf27eba329f73e35f9bf323f11c81b0734a010c917020a946` 属于历史源码；此前按[默认范围](../../DECISIONS.md)安装的是 908 词版本，当时通过内容一致性与格式检查。
+  - Evidence: 2026-10-12 因新版 revise 直接引用记录根规则，使用上方同一安装命令同步 structure；安装器报告覆盖既定五个 Agent。`~/.agents/skills/structure` 的文件集合和全部字节与当前源码一致，主文件 SHA-256 为 `a02df84d9fad0dfe1be571b3db9c8aab4363a637cb7141b87636277e9c223e99`，源码与安装副本格式校验通过；本轮未改 structure 正文。
+  - Scope: 当前源码已安装；全文沿用表达完整性优先的约束，记录根选择之外的既有规则保持不变。跨会话执行及各客户端自动调用效果仍未验证。
 
-- **已明确 `learn` 的章节层次、初始大纲和动态调整规则。**
-  - Evidence: [LESSONS.md](../../skills/learn/LESSONS.md) 新增 chapter 定义，要求较大主题在教学前展示覆盖既定范围的章节大纲、目标深度、前置依赖和完成证据，并根据学习表现细化单元，以章末综合任务验证单元间的联系；[SKILL.md](../../skills/learn/SKILL.md) 补充深入学习范围和章节规划入口。2026-09-10 运行 `python3 【原电脑本地路径已移除】 skills/learn`，输出 `Skill is valid!`；主文件 40 行、490 个按空白分隔的词，说明文件 45 行、616 个词。
-  - Scope: 完成规则修订及格式校验；尚未用完整课程验证大纲覆盖和动态调整效果。没有创建实际学习课程，也未修改 Goal 或 Context。
+- **依赖管理工具已从本维护目标拆分。**
+  - Evidence: 2026-10-09 按用户确认新建 [依赖管理目标](../dependencies/GOAL.md)及其 Decisions 和 Progress，四条既有工具决定原样迁移，专属约束移入新 Goal；本目标保留入口，README 同步索引并移除旧扫描原型的工具入口。
+  - Scope: 后续工具需求、设计、实现与验证在依赖管理目标推进；structure 的修订继续在本目标维护。
 
-- **已按 structured-records 的组织方式与 writing-for-agents 的标准简化 `learn`。**
-  - Evidence: [SKILL.md](../../skills/learn/SKILL.md) 集中为 Definitions、Workflow、Source checks、Formats、Changes；[LESSONS.md](../../skills/learn/LESSONS.md) 仅保留按需读取的 HTML 要求。2026-09-10 运行 `python3 【原电脑本地路径已移除】 skills/learn`，输出 `Skill is valid!`；重构前后的三个概念定义逐字比对一致。主文件 40 行、500 个按空白分隔的词，HTML 说明 20 行、156 个词，总词数从 1,106 减为 656；已核对本地引用文件存在。
-  - Scope: 已检查格式、定义稳定性及既有需求的条款覆盖；未通过实际试教验证行为效果。本次没有修改 structured-records、writing-for-agents、Goal 或 Context。
+- **历史维护问题已回查，并据此保留关键边界。**
+  - Evidence: 沿 [Structure Skill](codex://threads/01a07ef7-c9bf-7b30-88d4-2950c415b7f7) 读至最早一页，核对 57 个返回轮次中的用户纠正与相关答复，交叉查阅 [Writing Skill](codex://threads/01a0c863-8822-7c33-8cf4-f2eacaab0b9f)、[列出项目维护文件](codex://threads/01a0d265-6e6c-7a00-a35d-4b9a0b08b682) 和 [AgentMD](codex://threads/01a0c7d2-b18e-7243-b305-ee954f33ee9b)。现文覆盖讨论入口、小请求仍遵循适用决定、长期判断与产物成果分别记录、单次具体变更确认，以及相关目标冲突先澄清的要求。
+  - Scope: 属于历史证据回查与静态推演，部分长答复使用工具返回的截断内容，未全量重读工具输出；不能据此保证后续会话不会再犯。
 
-- **已通过 `npx skills` 全局安装 `learn`，Agent 范围与 structured-records 一致。**
-  - Evidence: 2026-09-10 按用户指定的方法，在 Fish 环境执行 `env DISABLE_TELEMETRY=1 npx skills add ../.. --skill learn --global --agent cline codex cursor github-copilot --yes`，退出码为 0，输出 `Installation complete`。随后 `npx skills list --global --json` 确认两者均为 global，Agent 列表均为 Cline、Codex、Cursor 和 GitHub Copilot；learn 安装位置为 `【未随包迁移的参考技能：learn/】`。安装后的 SKILL.md、LESSONS.md 均与仓库逐字节一致，格式校验输出 `Skill is valid!`；其 SHA-256 分别为 `b61d5f64d054cec4910f7f4e355078685668fbf2ae7bb9761a12e32146815252`、`f65c3d527e4b2fb76217f5b74ad78be70eb9ebb9b4932a8bb58048f61e21fac6`。
-  - Scope: 已验证正式安装命令、全局范围、Agent 列表和文件内容；尚未在新的学习会话中验证调用效果。安装器对这四个 Agent 使用共享目录的 copy 模式，安装方式由 `npx skills` 管理；仓库继续保留维护版本。
+## learn
 
-- **已为 `structured-records` 增加用户明确选择或纠正做法后的 Context 提议触发。**
-  - Evidence: [SKILL.md](../../skills/structured-records/SKILL.md) 在 Workflow 的公共入口要求：用户选择或纠正方法、约束、偏好后，在结束当前轮次前执行 Recording checks；符合 Context 条件时，在正常回答尾部询问是否按已确认范围记录，并遵守 Changes。2026-09-10 运行 `quick_validate.py skills/structured-records`，输出 `Skill is valid!`；Changes 段落与本次修改前逐字一致，文件 SHA-256 为 `d22cc6e9cd74b4de525bf6c150b868aa498a3dc6c84a119cd308912ccf72802e`。
-  - Scope: 已修改仓库版本并验证格式及审批规则保留；尚未同步全局安装，尚未通过后续真实对话验证触发效果。关于 npx skills 安装方式的条目已在用户明确批准后补入[项目根 Context](../../CONTEXT.md)。
+- **learn 已按完整评审修订学习方式、完成判断、记录维护和视觉协作，源码尚未进行真实教学验证。**
+  - Evidence: 2026-10-12 用户授权按评审问题优化后，重写 [SKILL.md](../../skills/learn/SKILL.md)、[PLANNING.md](../../skills/learn/PLANNING.md)、[RECORDS.md](../../skills/learn/RECORDS.md) 和 [LESSONS.md](../../skills/learn/LESSONS.md)，设计依据见 [Decisions 的 learn 小节](DECISIONS.md#learn)。主文件从 653 词调整为 591 词，配套文件依次为 203、297、250 词；主文件 SHA-256 为 `2f649e3e71f0829e1558567aff38d0d9fda16dc7e008f6643f6a27d670bdf369`。
+  - Evidence: `quick_validate.py`、修改范围的 `git diff --check` 及四份正文与本目标 Decisions 的 23 处本地链接和锚点检查通过。文本推演覆盖连续阅读、不同帮助程度的应用、暂缓前置缺口、错误答案更正、跨会话恢复和单个视觉产物；这些检查不构成实际教学测试。
+  - Evidence: 已登记视觉分支到 visualize、学习记录到 structure、规划到记录及主文件到设计决定的关系，并更新相关职责说明；双向查询和间接查询确认调用路径。README 用途标签、调用配置、visualize、structure、writing、revise、项目规则及依赖示例经影响复核仍适用，无需改写；依赖目标中原先未落实的 learn/visualize 候选已解决。
+  - Scope: 保留四份正文，分别承载共同教学规则、规划调整、记录维护和可选视觉交付，均低于 600 词精简目标。仅修改仓库源码、相关记录和本地依赖数据，未安装、提交或发布；尚未执行真实教学、跨会话恢复或页面集成实测。开工时根 DECISIONS、agentmd/global.md 和 writing 的既有 stale 状态不属于本次 learn 修订结果。
 
-- **已补充 `learn` 单元衔接时的理解证据检查，并更新全局安装。**
-  - Evidence: [SKILL.md](../../skills/learn/SKILL.md) 的 Workflow 5 首句按用户批准的三句话替换，要求推进对话前检查已有证据，不足时主动邀请针对缺口的简短验证，并允许明确跳过、保留未验证状态；逐字比对确认其他内容未变。2026-09-11 仓库版及安装版均通过 `quick_validate.py`；执行 `env DISABLE_TELEMETRY=1 npx skills add ../.. --skill learn --global --agent cline codex cursor github-copilot --yes`，输出 `Installation complete`，退出码为 0；安装后的两个文件与仓库逐字节一致。
-  - Scope: 已验证修改范围、格式和安装一致性；真实对话中的触发效果待后续观察，尚未通过实际学习会话验证。
+## 其他 skills
 
-- **已为 `learn` 补充 HTML 阅读与概念关系呈现要求，并更新全局安装。**
-  - Evidence: [LESSONS.md](../../skills/learn/LESSONS.md) 的 Presentation 合并了用户批准的四项要求：结构化呈现与按需联动高亮、关键概念就地展开及有明确含义的关联链接、定义/示例/来源交叉导航与阅读位置保留、必要推理保留及可选细节折叠。2026-09-11 通过 `env DISABLE_TELEMETRY=1 npx skills add ../.. --skill learn --global --agent cline codex cursor github-copilot --yes` 完成全局更新，退出码为 0；格式校验通过，安装后的两个文件与仓库逐字节一致。LESSONS.md 的 SHA-256 为 `a95c53bc4ed0896bd692b521234669288527ff82c91aa82d6ac4260b464662b6`，主 SKILL.md 保持未变。
-  - Scope: 已验证规则更新、安装结果及文件一致性；没有重建 Pi 课程页面，实际阅读和交互效果待课程试用验证。
+- **Pi 课件重复问题的 learn 候选已撤回，当前仅准备 writing 修订。**
+  - Evidence: 2026-10-13，用户明确纠正修改范围为 writing，并要求同一语义只能在一个位置维护；已据此准备 `/private/tmp/writing-single-source-2026-10-13.md` 及同名 `.diff`，替代此前 learn 交付说明候选。
+  - Scope: learn 不属于本次修改范围，旧候选不再适用；writing 正式源码尚未应用，独立理解评审仍待完成，未安装或验证行为效果。
 
-- **已创建独立的文档型 HTML 阅读交互技能 `document-reading`。**
-  - Evidence: [SKILL.md](../../skills/document-reading/SKILL.md) 为 27 行、480 个按空白分隔的词，SHA-256 `cb5f6accfb2539f327b6ae610b45eaa7fa9a09c9572dfdca5df9850d02780081`；入口配套交互选型、ECMA 官方资源核对记录、可复现验证步骤和一个无依赖 HTML 示例。2026-09-14 运行 skill-creator 的 `quick_validate.py` 输出 `Skill is valid!`，示例内联 JavaScript 通过 `node --check`，本地 Markdown 链接、静态 HTML ID 和引用目标检查通过。
-  - Evidence: 通过 Codex 内置浏览器的独立 HTTP 测试页及 CDP，实测预览与正式定义一致，点击关闭及 Enter/Tab/Escape 后焦点回到触发按钮，返回/浏览器后退前进保持原位置（源按钮 viewport top 在返回前后均为 379.796875 px），三个反向引用分为两个章节。外层 saved 只选中两处，内层及另一章节同名变量不选中；独立选择 next 后清除 saved 保留 next。发现并修正固定导航遮挡，复验引用 top 为 112.171875 px，大于导航 bottom 53.890625 px。390 px 窄屏 scrollWidth 为 390 px；打印时定义和变量文字保留、导航隐藏；禁用脚本后正文及原始链接结构可见。浏览器错误日志为空。
-  - Scope: 已保存维护版本，未安装、发布、执行 Git 状态变更操作，也未修改 learn 或 Pi 课程。受工具能力限制，触屏事件及禁用脚本后的真实链接点击未验证；未执行屏幕阅读器、跨浏览器、其他项目生成流程或真实读者理解效果验证。ECMA 的机制依据当前官方脚本、样式和生成索引，未重新完成在线交互实测；准确范围见 [来源记录](../../skills/document-reading/references/ecma-evidence.md)。
+- **writing 已补充跨上下文文本的使用要求，本次修订待全局同步。**
+  - Evidence: 2026-10-09 安装的 [SKILL.md](../../skills/writing/SKILL.md) 版本为 1059 词，主文件 SHA-256 为 `9681a5d51be970385e0165a9a8690e7a71f5e8320e58474b71e4a23d9cd42987`。当时通过 Fish 中的 `npx skills` 按[默认范围](../../DECISIONS.md)完成全局安装，源码与安装目录的文件集合及全部字节一致，两侧格式校验通过；命令、安装位置与逐文件校验值见[安装证据](../../references/writing-review-2026-10-09/INSTALLATION.json)。
+  - Evidence: [Matt 规则评审](../../references/writing-review-2026-10-09/review-matt.json)和[自身规则评审](../../references/writing-review-2026-10-09/review-self.json)分别检查了同一份 1009 词[冻结稿](../../references/writing-review-2026-10-09/writing.md)，两项建议已落实为评审完成约定和逐句识别 no-op 候选；[比较结果](../../references/writing-review-2026-10-09/COMPARISON.json)保留取舍依据。
+  - Evidence: 2026-10-10 按确认稿新增跨上下文文本要求，明确覆盖跨 session 提示词，并要求发送或保存前从接收者可获得的信息检查可用性；[全局规则源码](../../agentmd/global.md)加入 writing 调用入口，相关决定已保存。writing 当前为 1145 词，SHA-256 为 `b9868c54bd9d0ec8911394769fa80763816cd08b2ac80c96e59a4ce86bf40553`，格式校验与改动的空白检查通过。
+  - Scope: 本次完成仓库源码与记录修改，未重新安装 writing 或全局规则；只读核对已安装 writing 仍为 2026-10-09 版本，已安装全局规则尚无新增入口。既有独立评审未覆盖本次修订，行为效果仍待验证。
 
-- **已加强 `learn` 的反馈跟进和理解问题发现规则，并更新全局安装。**
-  - Evidence: [SKILL.md](../../skills/learn/SKILL.md) 增加学习中反馈或困难的即时处理入口，将不充分或矛盾的证据转为针对不确定点的新情境预测/推理检查；Changes 要求区分理解、教材与节奏问题，记录问题、证据、调整和下次检查，将未解决问题带入后续相关单元，并按问题类型验证解决。[LESSONS.md](../../skills/learn/LESSONS.md) 补充练习回答和困难带回教学对话的途径，只使用已共享或检查过的结果作为证据。
-  - Evidence: 2026-09-14 仓库版和安装版均通过 `quick_validate.py`；比对确认三个定义、明确跳过规则及章节/计划验证要求保留。通过 `env DISABLE_TELEMETRY=1 npx skills add ../.. --skill learn --global --agent cline codex cursor github-copilot --yes` 安装成功，两个安装文件与仓库逐字节一致。SKILL.md 的 SHA-256 为 `b1a20b52c56e557cb2d759951adac3af91d57919051fc9254479db2a9d67914d`，LESSONS.md 为 `3eaacdba36c7692a9bbbd501f3cb864374d78de245865121413f6540dc7670f7`。
-  - Scope: 已验证规则内容、格式和全局安装一致性；未修改其他学习项目的教材或学习记录，持续学习中的问题发现和解决效果仍待实际验证。
+- **document-reading 已移除，research 已退出候选维护范围。**
+  - Evidence: 2026-10-09 删除 document-reading 的 5 个已跟踪文件及 README 入口，更新 visualize 的历史参考说明；本仓库没有 research 实现，相关候选记录已替换为停止维护决定。检查的既定全局目录中均未发现两项安装。
+  - Evidence: 删除前确认 document-reading 无未提交修改；历史内容位于 Git 提交 `8d0cbf48c6133a44436f2f42b612d0337df3c94c` 的 `skills/document-reading/`，research 旧设计记录位于同一提交的 `goals/maintain-personal-skills/CONTEXT.md`。
+  - Scope: 未修改其他 skill 正文或上游参考快照；历史报告中的名称仅作当时情况保留。
+
+- **visualize 已按通用视觉建模流程重写，配有设计规范与默认 CSS；全局安装版仍为此前草稿。**
+  - Evidence: 2026-10-08 按用户纠正重写 [SKILL.md](../../skills/visualize/SKILL.md)，全文 549 词，SHA-256 为 `0d28587094fd41abf53766384d8e2f980e0628663567f7d19da63c551faa7f70`。流程为明确理解问题、建立有依据的模型、设计观察与交互、实现、验证交付；从材料提取主体、层次、关系及变化，借助 structure 统一定义，未按领域逐项追加规则。
+  - Evidence: [DESIGN.md](../../skills/visualize/DESIGN.md) 共 550 词，补充整体与细节对应、关系含义和可返回的依据查阅。Decisions 中此前收窄到复杂代码的条目已按用户要求替换为通用定位；[设计参考](../../references/visualize-design.md)同步说明依据。格式、字数、本地文件链接及空白检查通过。
+  - Evidence: 用户同意后新增 [默认 CSS](../../skills/visualize/assets/visualize.css)，与官方 1.0.45 原文件逐字节一致；[来源记录](../../skills/visualize/assets/visualize.source.json)保存版本、路径和校验值。DESIGN.md 说明独立页面的本地引用方式、组件的样式边界和交互需自行实现；静态检查确认该 CSS 无外部导入，URL 仅使用内嵌 data 资源。
+  - Evidence: 此前通过 `npx skills` 安装到 Cline、Codex、Cursor、GitHub Copilot 和 Zed 的版本，主文件 SHA-256 为 `690e6a69dabb75f56161be5fb4e29512869d99436577b4fbdca645f3298e5317`；本次确认它与新源码不同。用户此前在聊天中选择 `$visualize` 时传入的路径为 `~/.agents/skills/visualize/SKILL.md`，确认该次选择指向个人安装版。
+  - Scope: 本次完成指令与静态结构检查，未重新安装，未执行独立会话行为评测、页面生成或组件集成实测；不能据此认定理解效果已验证。
+
+## 参考资料
+
+- **已完成 Matt 固定快照中全部 38 个 skill 的组织方式分析。**
+  - Evidence: 2026-10-12 完整阅读 38 份 SKILL.md 和 27 份附属正文、模板及脚本，核对 38 份调用配置；依据 [SOURCE.json](../../references/matt-skills/SOURCE.json) 验证快照全部 188 个文件或符号链接的 SHA-256，均匹配。[完整索引](../../references/matt-skills/README.md)列出逐项来源。分析从各 skill 的实际组织出发，覆盖用途与边界、概念与状态、流程与交互、产物与维护、分文件与能力组合，并区分常见写法和个别例外。
+  - Scope: 来源为提交 `f3fc5632f401156837ee3872f14fe33ccf1024ea`，包含杂项和实验版；这是文本分析，未执行上游工作流、验证行为效果或将归纳作为已批准编写规则。
+
+- **已保存 domain-modeling 带读讨论中的八项 skill 编写参考。**
+  - Evidence: 2026-10-09 按用户两轮确认，将最初四点与随后六点合并为 [Decisions 中的八项参考](DECISIONS.md#skill-编写参考)：描述顺序、用户确认、行动条件、示例与概念关系检验、矛盾核对、产物职责、按需创建与及时记录、能力边界。行动条件与概念关系检验并入原有相关条目，其余四项新增；关联本地 Matt 固定快照及 Astra 文章，区分原文要求、讨论判断和适用范围。
+  - Scope: 作为后续设计与评审的可选参考；本轮只维护记录，未据此修改 skill 或通用规则。
+
+- **Matt 快照与 Astra 官方原文已保存，当前文件校验通过。**
+  - Evidence: 2026-10-08 实查 [Matt 来源清单](../../references/matt-skills/SOURCE.json)中的提交为 `f3fc5632f401156837ee3872f14fe33ccf1024ea`，188 个文件或符号链接的 SHA-256 全部匹配；[阅读索引](../../references/matt-skills/README.md)提供 skill 及附属文件入口。
+  - Evidence: [Astra 原文](../../references/rethinking-skills-and-prompts-for-gpt-6-astra.md)为 6517 字节，SHA-256 为 `a1deee4c0b3ca16a20385c27f0692e22d5150fdec81710c04742dd5da29f0468`，与[来源记录](../../references/rethinking-skills-and-prompts-for-gpt-6-astra.source.json)一致；本次 structure 调整已实际阅读并采用其中按需加载、避免过细流程和明确完成条件的建议。
+  - Scope: 固定参考快照，不代表已检查上游最新版本；人工理解进度以[带读会话](codex://threads/01a11a1e-e321-70b3-abfa-70553094d80d)及后续对话为准，不以文件读取完成代替用户理解。
+
+- **OpenAI 用户能力分类资料仍可作为选题参考。**
+  - Evidence: [2026-09-28 的分类与分析](../../references/openai-user-capabilities-2026-09-28.md)保存当时对 12 类场景、交互形式、平台依赖和可借鉴方向的调查。
+  - Scope: 保留历史参考价值；本轮未更新产品事实、账户权益或外部链接，也未将其中建议作为已批准决定。
+
+## 规则与交付脚本
+
+- **根目录参考资料已排除出 Git，当前文件集合已通过提交前检查，尚未暂存或提交。**
+  - Evidence: 2026-10-09 添加 `/references/` 忽略规则，`git check-ignore` 确认生效；README 标明本地资料，打包脚本改为参考目录存在时才包含。按 `git ls-files --cached --others --exclude-standard` 收集现存文件，在临时目录中分别验证无参考目录和有参考目录时打包成功。
+  - Evidence: 5 个 skill 的 `quick_validate.py` 校验、`scripts/check-rule-installation.py` 的 11 项测试、两个 Shell 脚本的 `bash -n` 及 `git diff --check` 均通过；提交文件集合中的其余相对文件链接有效。
+  - Scope: 26 处本地参考链接的目标不会随 Git 保存，新检出仓库需另行提供这些资料；本次未执行暂存、commit 或远端操作，也未补齐历史设计依据或拆分维护目标。
+
+- **两份通用规则曾通过安装一致性核验；global 新增 writing 入口后待同步。**
+  - Evidence: 2026-10-08 只读提取 `~/.codex/AGENTS.md` 中的 global 区块、`/Users/lvhongwei/workspace/AGENTS.md` 中的 workspace 区块，与 [global](../../agentmd/global.md)、[workspace](../../agentmd/workspace.md) 逐字节匹配；两处起止标记均唯一。
+  - Evidence: [安装脚本](../../scripts/setup-rule.sh)采用追加或替换管理区块的方式。既有 2026-10-08 验证记录确认区块外内容保留、重复安装返回 Unchanged，[安装检查](../../scripts/check-rule-installation.py)的 11 项检查通过。
+  - Scope: 上述核验对应 2026-10-08 版本；2026-10-10 的 global 修订与同步状态见本文件 writing 条目。规则安装脚本未改动，独立新会话的执行效果仍待验证。
+
+- **README 保持内容索引，打包脚本交付项目文件。**
+  - Evidence: 当前 [README](../../README.md)提供 skill、规则、脚本和记录入口；[打包脚本](../../scripts/package-skills.sh)输入包含 skills、agentmd、goals、references、scripts 及根目录文件，排除会话、Git 内部数据和旧 ZIP。
+  - Scope: 旧打包文件是对应时间的历史快照；本轮没有重新打包。Glossary 相关入口的旧提案适用状态见[待处理事项](#待处理事项)。
+
+## 待处理事项
+
+- **旧记录重写提案已不适用于当前文件，后续需重新准备。**
+  - Evidence: 2026-10-09 对 `/var/folders/mt/phtb44n50wzg1gc88797czkw0000gn/T/structure-cwd-rewrite-mk5dd3p2/records-rewrite.diff` 执行 `git apply --check`，根目录和维护目标下的 Decisions 均无法匹配；两份 Decisions 与 README 已不同于提案基线。
+  - Scope: 旧提案保留作历史参考。继续其中的 Glossary、README 和打包入口工作时，基于当前文件重新形成变更，再按记录规则展示与确认。

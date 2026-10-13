@@ -1,0 +1,26 @@
+[
+  {
+    "op": "add",
+    "dependent": "goals/maintain-personal-skills/PROGRESS.md",
+    "dependency": "skills/structure/SKILL.md",
+    "reason": "进展记录保存了 structure 源码版本及校验结果，源码变化后需要核对当前状态描述"
+  },
+  {
+    "op": "add",
+    "dependent": "goals/dependencies/PROGRESS.md",
+    "dependency": "scripts/dependencies/src/lib.rs",
+    "reason": "工具进展记录的能力和验证结论需要与核心实现保持一致"
+  },
+  {
+    "op": "add",
+    "dependent": "scripts/dependencies/README.md",
+    "dependency": "scripts/dependencies/src/lib.rs",
+    "reason": "使用说明中的事务、查询路径、错误与数据结构约定依赖核心实现"
+  },
+  {
+    "op": "add",
+    "dependent": "README.md",
+    "dependency": "scripts/dependencies/README.md",
+    "reason": "仓库索引中的工具入口和用途标签需要与工具说明一致"
+  }
+]
