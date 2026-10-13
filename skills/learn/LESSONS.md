@@ -1,26 +1,19 @@
-# HTML lessons
+# Visual and browser learning materials
 
-## Structure
+## Collaboration
 
-Use the existing course layout; otherwise provide an index reflecting chapters and units, one page per unit, and shared local assets. Generate pages from maintained Markdown notes, with one editable source per explanation. Reuse existing generators or components; otherwise use local HTML, CSS, and JavaScript.
+Use [visualize](../visualize/SKILL.md) when an explorable visual model helps answer the learning question. Supply the question, learner prerequisites, source material, relevant concept definitions, and the learning project's established record root; request a standalone page or reusable component. Its modeling, design, implementation, and artifact checks remain with visualize. `learn` owns teaching, assessment, and integration into the lesson.
 
-## Presentation
+## Delivery
 
-- Provide readable text, responsive contents, previous/next links, and glossary navigation. Add search when needed.
-- Use headings, lists, tables, and diagrams to expose the content structure; add coordinated highlighting when it helps readers see corresponding parts.
-- At key concepts, use popovers or inline expansion to show a short definition and the main relationships, with links that state how the concepts relate.
-- Provide cross-links to definitions, examples, and sources, while preserving the reader's place when opening or closing supporting material.
-- Keep necessary reasoning in the main reading flow, collapse optional details, and support both click and keyboard interaction.
-- Keep core explanations readable without interaction and pages usable on narrow screens.
+Choose the smallest useful artifact: a single demonstration can stand alone. Use the existing course layout for maintained courses; add an index, unit navigation, or search when the material warrants them. Reuse existing generators and components. Keep one editable source per explanation; generate HTML from maintained Markdown when such notes are the source.
 
-## Interaction
+Keep essential reasoning readable, supporting definitions and sources reachable, and navigation usable by keyboard and on narrow screens. Use expansion only when it reduces reading effort without hiding required reasoning.
 
-Let learners predict, change inputs, or attempt variations, then inspect outcomes with explanatory feedback. Provide initial conditions, hints, solutions, and reset when needed; exercises do not gate navigation.
+## Learning feedback
 
-Provide a simple way for learners to bring attempts, reasoning, and difficulties back to the teaching conversation, such as a copyable summary. Continue the main skill's Teaching and feedback loop with these results.
+Where exercises serve the goal, let learners attempt predictions or variations and inspect explanatory feedback, with hints, solutions, and reset as needed. Keep navigation independent of exercise completion.
 
-Label simulations and their limits. Distinguish browser demonstrations from target-runtime execution; provide real execution instructions when the learning outcome requires them.
+Provide a way to bring attempts, reasoning, and assistance back to the conversation, such as a copyable summary; apply the main skill's evidence and closure rules to those results. Label simulations and limits, and provide target-runtime execution instructions when the goal requires real execution.
 
-## Verification
-
-Verify navigation, interactions, and feedback against the unit outcome before delivery; report checks not performed.
+Before delivery, verify lesson navigation, exercises, and feedback against the intended outcome, including integrated components. Report checks not performed; a working page does not establish learner understanding.

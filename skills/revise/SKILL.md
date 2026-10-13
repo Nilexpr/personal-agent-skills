@@ -1,60 +1,40 @@
 ---
 name: revise
-description: Revise skills managed in the personal-agent-skills repository when the user explicitly says their output does not meet expectations, or requests improvement based on actual use.
+description: Design and maintain skills under skills/ in the personal-agent-skills source project. Use when creating, changing, or removing a project skill or its supporting files.
 ---
 
 # Revise
 
-Improve a skill through actual use while preserving its original purpose: the problem it was created to solve, its intended outcomes, and its scope.
-
-A correction starts the revision process; approval of the concrete revision is required before saving it.
+Keep the project's skills consistent in writing and organization as they evolve. Use writing for text quality and Matt's comparable skills for task-specific structure, while preserving each skill's confirmed purpose.
 
 ## Scope
 
-Only maintain skills whose source is managed under `skills/` in `/Users/lvhongwei/workspace/project/personal-agent-skills`.
+Select the source project using [structure's record-root rule](../structure/SKILL.md#records). Confirm that the selected directory is the personal-agent-skills project; clarify an unknown location before editing. Work on its `skills/` sources and supporting files. Installed copies are evidence, not editing targets.
 
-Before starting a revision, establish that the affected skill belongs to this repository. An installed copy is eligible when its source can be traced here; a matching name alone does not establish ownership. Revise the repository source, leaving installation to a separate request.
+Read that project's `AGENTS.md` and referenced standards. Resolve project paths, maintenance commands, and structure records from this root, including in conversations started elsewhere. Installation and publication require explicit requests.
 
-For external skills, plugin-provided skills, and upstream reference snapshots, leave them unchanged and end this revision workflow.
+## Design expectations
 
-## Establish purpose and expectations
+Use the project's structure skill to read applicable goals and Decisions before proposing changes. Establish the skill's purpose, responsibilities, expected behavior, and intended change from these records and the request. Compare the current implementation with recorded intent; reuse confirmed choices and raise conflicts or missing premises that affect the design. For a new skill, establish the expectations not yet recorded.
 
-Identify the affected skill, the request, the actual output, and the version used. Distinguish that version from current source and installed copies; mark unavailable history rather than reconstructing it from today's text.
+For feedback about actual use, inspect the relevant output and version. Keep evidence and proposed explanations distinct.
 
-Recover the original purpose from the initial request, relevant goals, and confirmed decisions. Current instructions describe the implementation, but do not by themselves establish its intent.
+## Form the revision
 
-Use the user's feedback to establish the expected behavior. Ask directly when its meaning, scope, or relation to the original purpose is unclear; reuse answers already given.
+Read the whole affected skill and its supporting instructions and resources. For creation, inspect neighboring capabilities before adding another. Assess the whole design, then change what the request and findings require.
 
-If the expectation clearly falls outside the original purpose, explain the mismatch and propose a separate skill instead of expanding this one.
+For the main organization, use the source project's `references/matt-skills/README.md` to find and read a Matt skill doing comparable work. Follow the task's shape: stages for dependent actions, rounds for interaction, objects and updates for persistent state, or concepts for a reference skill. Keep comparable skills similarly organized while adapting to their purpose; explain the structural choice. Matt's examples guide organization beyond writing's existing guidance. If the reference is unavailable, report the gap and obtain an accessible source before completing this assessment.
 
-Preserve confirmed expectations and their basis in the existing maintenance records, following their display and approval rules. Keep unresolved interpretations provisional.
+Use the project's `skills/writing/SKILL.md` to review the complete revised text and necessary supporting instructions. Keep its writing principles there rather than reproducing them in this workflow.
 
-## Review the whole skill
+## Independent understanding review
 
-Read the complete skill, including its description and supporting instructions; inspect referenced resources and dependencies where they affect its behavior.
+Before writing source files, freeze each changed skill's complete candidate version. Give a fresh session with no authoring history only that candidate and its normally available references. Withhold prior feedback and intended answers. Ask it to explain purpose, scope, invocation, actions, and outputs from the text, and identify ambiguities or missing premises. It reviews understanding without executing the skill. For removal, review surviving entries and callers for clear retirement or replacement.
 
-Check the whole workflow against its purpose and the confirmed expectation: responsibilities, inputs, terminology, action conditions, ordering, dependencies, outputs, and completion criteria.
+Compare its interpretation with the confirmed expectations. Resolve material comprehension gaps and repeat in another fresh session until they agree. Changes to meaning or necessary context invalidate a previous pass. If the session or required materials are unavailable, report the blocked review and leave the candidate unapplied. This checks understanding, not actual behavior.
 
-Trace the observed mismatch to evidence. Distinguish instructions that were not loaded, unclear or conflicting instructions, missing information, and failures to follow existing instructions; separate supported explanations from hypotheses.
+## Apply and complete
 
-Look beyond the reported passage for structural problems, duplication, and stale rules. Full review requires covering the whole skill, not rewriting every part. Resolve questions that affect the revision before drafting it.
+Show complete affected passages in a two-column Markdown table, “原文” and “修改后”; leave cells empty for additions or deletions and show new files in full. Apply changes covered by existing implementation authorization; otherwise obtain approval of the proposed changes.
 
-## Propose the next version
-
-Revise the skill to address the confirmed expectation and findings while preserving its purpose and unaffected requirements. Delete, combine, reorder, or rewrite as needed; adding instructions is only one option.
-
-Explain how each substantive change addresses a finding and remains consistent with the original purpose. If the evidence cannot support a particular correction, clarify the gap rather than inventing a cause or a rule.
-
-Present the proposed changes in a Markdown table with only two columns, “原文” and “修改后”. Include complete affected passages, leave the corresponding cell empty for additions or deletions, and show new files in full.
-
-Wait for approval of these changes before writing skill files. Confirmation of the expected behavior is not approval of the proposed text.
-
-## Save and report
-
-Reread the affected files before applying approved changes, preserving unrelated edits. If intervening changes invalidate the proposal, revise it and obtain approval again.
-
-Check the saved revision for valid format, usable references, internal consistency, and agreement with the approved text.
-
-Use existing maintenance records to connect the purpose, feedback, revision rationale, and check results without duplicating their contents.
-
-Finish when the approved revision is saved, static checks are complete, and remaining limitations are reported. This workflow stops there: report behavioral improvement as unverified rather than treating a rewritten prompt in a new session as a replay of the original context.
+Follow the project's AGENTS.md maintenance procedure before and after changes: use the dependency tool to inspect upstream sources and downstream consumers, judge what needs updating, and reconcile affected files, relationships, and records. Use structure for decisions and evidence. Finish when that procedure's completion conditions hold, reporting unresolved work and separating comprehension, static checks, and behavioral evidence.

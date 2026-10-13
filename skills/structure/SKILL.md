@@ -9,7 +9,7 @@ Structure preserves what a later session needs to continue work: intended outcom
 
 ## Records
 
-The record root is this conversation's `cwd`. Keep record paths relative to it.
+The record root defaults to this conversation's `cwd`. Use an explicitly specified record-root path when provided by the user or calling workflow. Resolve relative root paths against the conversation's `cwd`; keep record paths relative to the selected root.
 
 ```text
 <root>/

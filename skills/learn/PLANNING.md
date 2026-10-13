@@ -1,28 +1,17 @@
 # Learning planning
 
-## Units and chapters
+## Scope and outline
 
-- A **unit** is a lesson with one independently checkable outcome, achievable from explicit prerequisites without depending on later lessons.
-- A **chapter** groups units that jointly answer a substantial question or establish a coherent capability, verified through a task combining their outcomes.
+Use the main skill's unit and chapter definitions. Match the plan's size to the question; one unit can suffice. State assumptions about unspecified outcomes and use existing evidence to select the starting point.
 
-## Scope and depth
+Present the purpose, scope, intended outcomes, prerequisite order, sources, and completion evidence. Include chapters, optional branches, exclusions, and gaps where useful. Keep the outline available while detailing upcoming units.
 
-Curiosity is a valid purpose. State assumptions when the learner has not specified an intended outcome.
+Check the definitions, context, mechanisms, relationships, examples, limits, and prerequisites needed for the next unit using the main skill's Source checks. Mark later source gaps without requiring complete research before teaching can begin.
 
-Develop the processes and evidence needed to answer the agreed learning questions and support their intended use. For prerequisite knowledge, explain its role, conditions, and limits; when these suffice for the current explanation, leave its internal details as an independently explorable topic.
+Explain prerequisites' roles, conditions, and limits to the depth needed now; leave unnecessary internal details as optional exploration.
 
-## Outline
+## Evidence and adjustment
 
-Include purpose, scope, intended outcomes, chapters and units, prerequisites, sources, completion evidence, optional branches, exclusions, and gaps. Order units by prerequisites; keep the outline available while detailing upcoming units.
+Choose checks appropriate to the goal and participation preferences. Explanation goals need evidence of explanation; practical goals need observed application. Use unfamiliar combined tasks when the goal requires integrating or transferring chapter outcomes. Apply the main skill's Close or continue rules at each level.
 
-Map definitions, context, workings, relationships, examples, limits, and prerequisites; research them using the main skill's Source checks before teaching.
-
-## Completion
-
-Before advancing, compare evidence with each unit outcome; retain unsupported outcomes as unverified. Resolve prerequisite gaps unless explicitly skipped; schedule other gaps for follow-up.
-
-Close chapters with unfamiliar tasks combining their units using declared prerequisites; close the plan by reconciling coverage, demonstrated outcomes, and remaining gaps.
-
-## Adjustment
-
-Adjust unit order when needed; substantial prerequisite gaps get preparatory units. Preserve prerequisites and change the agreed goal, scope, or depth only with user agreement.
+Adjust order and add preparatory units when prerequisites require them. Explain changes affecting the learner's path; change the agreed goal, scope, or depth only with user agreement. Preserve the reason and next checkpoint using [RECORDS.md](RECORDS.md).

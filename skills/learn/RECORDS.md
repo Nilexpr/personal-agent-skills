@@ -1,35 +1,22 @@
 # Learning materials and records
 
-## Location
+## Location and ownership
 
-Use the learning project's established locations. For a new topic without an existing structure, use `learning/<topic>/` within the user's chosen workspace. Create materials as needed.
+Use established learning-project locations; otherwise use `learning/<topic>/` within the learner's chosen workspace. Create files when there is content needed for continued learning or requested reusable material. Reuse existing files serving these roles and link to their authoritative locations.
 
-```text
-learning/<topic>/
-├── PLAN.md
-├── SOURCES.md
-├── LEARNING.md
-└── lessons/
-```
+`learn` maintains the learning plan, teaching materials, and learning evidence below. Where shared goals, decisions, preferences, or terms already use [structure](../structure/SKILL.md), follow its rules at the established record root and reference those records rather than duplicating them.
 
-Reuse existing files that serve these roles; link to their authoritative locations rather than maintaining parallel copies.
+## Materials
 
-## Plan
+- `PLAN.md`: learning purpose, questions, scope, constraints, participation preferences, and outline. Read [PLANNING.md](PLANNING.md) when creating or revising it.
+- `SOURCES.md`: source links, supported claims, applicable versions or dates, and unresolved source gaps needed for later teaching. Cite claims in their explanations too.
+- `LEARNING.md`: the current checkpoint, demonstrated outcomes, supporting reasoning or work, assistance given, and unresolved issues with their next checks. Tie evidence to the relevant goal or unit and conditions; distinguish learner reports from inspected evidence and unverified outcomes.
+- `lessons/`: maintained explanations, concept relationships, examples, limits, and citations. Keep one editable source per explanation and link shared reference material. For browser delivery, read [LESSONS.md](LESSONS.md).
 
-`PLAN.md` holds the learning purpose, questions, scope, constraints, and outline. Read [PLANNING.md](PLANNING.md) when creating or revising it.
+## Update and resume
 
-## Sources
+Save changes that affect subsequent teaching, goal assessment, or resumption. Consolidate resolved issues into current conclusions with necessary evidence; omit transient exchanges and adjustments without continuing consequences. Retain why a plan changed and where teaching should resume.
 
-`SOURCES.md` holds source links, what each source supports, applicable dates or versions, and unresolved evidence gaps. Follow the main skill's Source checks; cite claims where they are explained.
+When goals, sources, explanations, or answers change materially, inspect affected lessons, exercises, and learning conclusions. Correct related material and mark unsupported outcomes for reassessment, preserving the conditions under which earlier evidence was obtained. A source correction alone does not demonstrate corrected learner understanding.
 
-## Learning state
-
-`LEARNING.md` holds learner reasoning, assistance, supported outcomes, the current checkpoint, and unresolved issues with next checks. Distinguish demonstrated understanding, learner-reported knowledge, and outcomes not yet verified.
-
-Record each issue, evidence, adjustment, and next check; carry unresolved issues into relevant later units. Preserve changes that affect subsequent teaching, including learner preferences and why the plan changed. Reference an existing preference or decision record when one already serves that purpose.
-
-## Lessons
-
-`lessons/` holds maintained explanations, terms and relationships, examples, limits, and source citations. Link shared reference material rather than duplicating it. Keep reference detail available without inserting it all into the conversation.
-
-Use one editable source per explanation. Read [LESSONS.md](LESSONS.md) when producing HTML lessons.
+Before resuming, reconcile the plan, relevant evidence, and deferred issues against their current conditions; continue at the next meaningful step.
